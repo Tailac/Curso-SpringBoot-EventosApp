@@ -2,27 +2,35 @@
 <html xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	  
-<head>
-	<meta charset="utf-8"/>
-	<title>Eventos App</title>
-</head>	  
+	<head>
+		<meta charset="utf-8"/>
+		<title>Eventos App</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+	</head>	  
 
-<body>
-	<h1>Lista de Eventos</h1>
-	<h3><a href="/cadastrarEvento">Cadastrar Evento</a></h3>
-	
-	<div th:each="evento : ${eventos}">
-		<div class="row">
-			<p><span th:text="${evento.nome}"></span></p>
-			<p><span th:text="${evento.local}"></span></p>
-			<p><span th:text="${evento.data}"></span></p>
-			<p><span th:text="${evento.horario}"></span></p>
-		
-		</div>
-	
-	
-	</div>
-	
-
-</body>
+	<body>
+		<h1>Lista de Eventos</h1>
+		<h3><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Evento</a></h3>
+		<table class = "container">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Local</th>
+					<th>Data</th>
+					<th>Horário</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento : ${eventos}">
+					<!--  <td><a th:href="${(#mvc.url('EC#detalheEvento').arg(0,evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>-->
+					<td><a th:href="@{/{id}(id = ${evento.codigo}) }"><span th:text="${evento.nome}"></span></a></td>
+					<td><span th:text="${evento.local}"></span></td>
+					<td><span th:text="${evento.data}"></span></td>
+					<td><span th:text="${evento.horario}"></span></td>			
+				</tr>
+			</tbody>	
+		</table>
+		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	</body>
 </html>
