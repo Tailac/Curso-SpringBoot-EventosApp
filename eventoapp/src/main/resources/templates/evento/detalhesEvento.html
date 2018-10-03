@@ -27,8 +27,21 @@
 				<button type="submit" class="waves-effect waves-light btn">Adicionar</button>
 			</form>
 		</div>
-		
-		
+		<br><br><br>
+		<div class="container">
+			<h5>Lista de Convidados</h5>
+		</div>
+		<div class="container" th:each="convidado : ${convidados}">
+			<div class="row">
+				<div class="input-field col s6">
+					<p>Nome <span th:text="${convidado.nomeConvidado}"></span></p>
+				</div>
+				<div class="input-field col s3">
+					<p>RG <span th:text="${convidado.rg}"></span></p>
+				</div>
+				
+			</div>
+		</div>
 		
 		
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
