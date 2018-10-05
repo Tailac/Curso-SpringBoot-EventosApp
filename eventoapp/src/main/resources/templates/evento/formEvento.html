@@ -7,33 +7,39 @@
 		<title>Eventos App</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>	
+		<link rel="stylesheet" href="style/styleCss.css"/>
 	</head>	  
 
 	<body>
-		<h1>Cadastro de Eventos</h1>
-		<h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a></h3>
+	<header>
+			<nav>
+			    <div class="nav-wrapper">
+			      <a href="#" class="brand-logo">Cadastro Evento</a>
+			      <ul id="nav-mobile" class="right hide-on-med-and-down">
+			        <li><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a></li>
+			      </ul>
+			    </div>
+		  	</nav>
+		</header>
 		
 		<th:block th:include="mensagemValidacao"></th:block>
-		
-		<form class="container" method="post">
-			
-			Nome: <input type="text" value="" name="nome"/>
-			<div class="row">
-				<div class="input-field col s6">
-					Local: <input type="text" value="" name="local"/>
-				</div>
-				<div class="input-field col s3">
-					Data: <input type="date" value="" name="data"/>
-				</div>
-				<div class="input-field col s3">
-					Horário: <input type="text" value="" name="horario"/>
-				</div>
-			</div> 
-			<button type="submit" class="waves-effect waves-light btn">SALVAR</button>
-			
-		
-	
-		</form> 
+		<div class="container ">
+			<form class="container formEvento" method="post">
+				Nome: <input type="text" value="" name="nome"/>
+				<div class="row">
+					<div class="input-field col s6">
+						Local: <input type="text" value="" name="local"/>
+					</div>
+					<div class="input-field col s3">
+						Data: <input type="date" value="" name="data"/>
+					</div>
+					<div class="input-field col s3">
+						Horário: <input type="time" value="" name="horario"/>
+					</div>
+				</div> 
+				<button type="submit" class="waves-effect waves-light btn">SALVAR</button>
+			</form> 
+		</div>
 		
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 	</body>
