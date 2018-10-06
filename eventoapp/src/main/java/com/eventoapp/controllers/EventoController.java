@@ -1,5 +1,6 @@
 package com.eventoapp.controllers;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,13 @@ public class EventoController {
 		mv.addObject("convidados", convidados);
 		return mv;
 	}
+
+	@RequestMapping("/deletarEvento")
+	public String deletarEvento(long codigo){
+		Evento evento = er.findByCodigo(codigo);
+		er.delete(evento);
+		return "redirect:/eventos";
+	}
 	
 	@RequestMapping(value="/{codigo}",method=RequestMethod.POST)
 	public String detalhesEventopost(@PathVariable("codigo") long codigo, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes){
@@ -71,5 +79,14 @@ public class EventoController {
 		cr.save(convidado);
 		attributes.addFlashAttribute("mensagem", "Convidado adicionado com sucesso");
 		return "redirect:/{codigo}";
+	}
+	
+	@RequestMapping("/deletarConvidado")
+	public String deletarConvidado(String rg){
+		Convidado convidado = cr.findByRg(rg);
+		cr.delete(convidado);
+		Evento evento = convidado.getEvento();
+		String codigoEvento = String.valueOf(evento.getCodigo()); 
+		return "redirect:/"+ codigoEvento;
 	}
 }
